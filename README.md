@@ -1,4 +1,5 @@
 # mcp-agent-template — un agent MCP d'entreprise, garde
+<!-- mcp-name: io.github.amineutron/mcp-guard -->
 
 [![CI](https://github.com/amineutron/mcp-agent-template/actions/workflows/ci.yml/badge.svg)](https://github.com/amineutron/mcp-agent-template/actions/workflows/ci.yml) [![License: AGPL-3.0 + commercial](https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue.svg)](COMMERCIAL-LICENSE.md) [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 

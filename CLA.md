@@ -1,7 +1,5 @@
 # Accord de contribution (CLA) — mcp-guard / mcp-agent-template
 
-> **Brouillon a faire relire avant publication.**
-
 Ce projet est distribue sous double licence (AGPL-3.0 et licence commerciale,
 voir [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md)). Pour pouvoir continuer a
 proposer les deux, l'auteur du projet doit avoir le droit de distribuer chaque

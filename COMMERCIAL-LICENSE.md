@@ -1,7 +1,7 @@
 # Licence commerciale — mcp-guard / mcp-agent-template
 
-> **Brouillon a faire relire avant publication.** Ce texte decrit l'offre ; le
-> contrat de licence commerciale proprement dit est signe au cas par cas.
+> Ce texte decrit l'offre ; le contrat de licence commerciale proprement dit
+> est signe au cas par cas.
 
 ## Deux licences, au choix
 

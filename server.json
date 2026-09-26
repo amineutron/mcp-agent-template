@@ -1,0 +1,52 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.amineutron/mcp-guard",
+  "title": "mcp-guard",
+  "description": "Enterprise MCP guard: roles, allowlist policy, human confirmation and JSONL audit log, with example tools.",
+  "repository": {
+    "url": "https://github.com/amineutron/mcp-agent-template",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/amineutron/mcp-agent-template#readme",
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "mcp-guard",
+      "runtimeHint": "uvx",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "serve"
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "MCP_GUARD_ROLE",
+          "description": "Caller role: lecteur (read-only), operateur, admin. Defaults to lecteur.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        },
+        {
+          "name": "MCP_GUARD_CONFIRM",
+          "description": "elicit: the server asks the human; client: the client confirms itself from destructiveHint.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        },
+        {
+          "name": "MCP_GUARD_AUDIT_DIR",
+          "description": "Directory of the JSONL audit log.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}
