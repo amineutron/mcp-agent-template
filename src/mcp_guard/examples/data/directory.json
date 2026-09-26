@@ -1,0 +1,22 @@
+{
+  "_note": "Annuaire FICTIF de l'entreprise Exemple SA (format inspire de LDAP). Aucune personne reelle.",
+  "base_dn": "dc=exemple,dc=local",
+  "users": [
+    {"uid": "cmartin", "cn": "Claire Martin", "mail": "claire.martin@exemple.local", "title": "DSI", "ou": "direction", "groups": ["direction", "admins-si"], "phone": "+33 1 00 00 00 01", "active": true},
+    {"uid": "tbernard", "cn": "Thomas Bernard", "mail": "thomas.bernard@exemple.local", "title": "Administrateur systeme", "ou": "infrastructure", "groups": ["admins-si", "astreinte"], "phone": "+33 1 00 00 00 02", "active": true},
+    {"uid": "sdubois", "cn": "Sophie Dubois", "mail": "sophie.dubois@exemple.local", "title": "Technicienne support", "ou": "support", "groups": ["support"], "phone": "+33 1 00 00 00 03", "active": true},
+    {"uid": "lmoreau", "cn": "Lucas Moreau", "mail": "lucas.moreau@exemple.local", "title": "Developpeur", "ou": "etudes", "groups": ["dev", "vpn"], "phone": "+33 1 00 00 00 04", "active": true},
+    {"uid": "nlaurent", "cn": "Nadia Laurent", "mail": "nadia.laurent@exemple.local", "title": "Comptable", "ou": "finance", "groups": ["finance", "vpn"], "phone": "+33 1 00 00 00 05", "active": true},
+    {"uid": "psimon", "cn": "Paul Simon", "mail": "paul.simon@exemple.local", "title": "Commercial", "ou": "ventes", "groups": ["ventes"], "phone": "+33 1 00 00 00 06", "active": false}
+  ],
+  "groups": [
+    {"cn": "direction", "description": "Comite de direction"},
+    {"cn": "admins-si", "description": "Administrateurs du systeme d'information"},
+    {"cn": "astreinte", "description": "Astreinte infrastructure"},
+    {"cn": "support", "description": "Support utilisateurs niveau 1"},
+    {"cn": "dev", "description": "Equipe developpement"},
+    {"cn": "finance", "description": "Service comptable"},
+    {"cn": "ventes", "description": "Service commercial"},
+    {"cn": "vpn", "description": "Acces VPN autorise"}
+  ]
+}

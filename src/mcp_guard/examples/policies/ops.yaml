@@ -1,0 +1,9 @@
+# Politique de l'exemple ops. Adapter la liste des unites redemarrables a la machine.
+version: 1
+default: deny
+tools:
+  service_status: {}
+  list_containers: {}
+  restart_service:
+    allowed_values:
+      unit: [nginx.service, app-demo.service]   # rien d'autre ne peut etre redemarre

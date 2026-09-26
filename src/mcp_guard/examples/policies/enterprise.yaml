@@ -1,0 +1,19 @@
+# Politique de l'exemple entreprise. Tout outil absent de cette liste est refuse.
+# Le role minimal vient du type d'outil (lecture -> lecteur, ecriture -> operateur,
+# destructif -> admin) ; une regle peut l'augmenter, jamais le baisser.
+version: 1
+default: deny
+tools:
+  list_tickets: {}
+  get_ticket: {}
+  create_ticket:
+    allowed_values:
+      priority: [basse, normale, haute]      # « critique » reste reserve aux humains
+  close_ticket: {}
+  delete_ticket: {}                          # admin + confirmation humaine
+  search_directory: {}
+  get_user: {}
+  group_members: {}
+  list_tables: {}
+  query_inventory:
+    role: operateur                          # requetes libres : un cran au-dessus de la simple lecture
