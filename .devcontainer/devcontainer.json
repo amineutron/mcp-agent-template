@@ -1,0 +1,19 @@
+{
+  "name": "mcp-agent-template",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "pip install --user uv && ~/.local/bin/uv sync",
+  "containerEnv": {
+    "MCP_GUARD_ROLE": "lecteur"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python"
+      }
+    }
+  }
+}

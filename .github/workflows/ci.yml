@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync --locked
+      - run: uv run ruff check src tests
+      - run: uv run pytest -q
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+      - run: uv build
+      # l'executable installe depuis la roue doit repondre, comme le fera `uvx mcp-guard`
+      - run: uvx --from dist/*.whl mcp-guard --help
+      - run: uvx --from dist/*.whl mcp-guard check-policy src/mcp_guard/examples/policies/enterprise.yaml
