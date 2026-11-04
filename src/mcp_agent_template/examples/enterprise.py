@@ -1,7 +1,7 @@
 """Exemple entreprise : support (tickets), annuaire (lecture seule), inventaire (SQL lecture seule).
 
-    mcp-guard serve --example enterprise
-    MCP_GUARD_ROLE=operateur mcp-guard serve --example enterprise --policy ma-politique.yaml
+    mcp-agent-template serve --example enterprise
+    MCP_AGENT_TEMPLATE_ROLE=operateur mcp-agent-template serve --example enterprise --policy ma-politique.yaml
 """
 from __future__ import annotations
 
@@ -25,8 +25,8 @@ def build_server(policy: Policy | None = None, data_dir: Path | None = None, **g
     directory = Directory()
     inventory = ReadOnlyDatabase(data / "inventory.db")
 
-    server = MCPServer("mcp-guard-enterprise", instructions=(
-        "Serveur d'exemple mcp-guard : support, annuaire et inventaire d'une entreprise FICTIVE. "
+    server = MCPServer("mcp-agent-template-enterprise", instructions=(
+        "Serveur d'exemple mcp-agent-template : support, annuaire et inventaire d'une entreprise FICTIVE. "
         "Chaque appel est controle (role, liste blanche) et journalise ; les actions destructrices "
         "demandent la confirmation d'un humain."))
     guard = Guard(server, policy or Policy.load(POLICY), **guard_kwargs)

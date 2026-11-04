@@ -1,5 +1,5 @@
 # mcp-agent-template — un agent MCP d'entreprise, garde
-<!-- mcp-name: io.github.amineutron/mcp-guard -->
+<!-- mcp-name: io.github.amineutron/mcp-agent-template -->
 
 [![CI](https://github.com/amineutron/mcp-agent-template/actions/workflows/ci.yml/badge.svg)](https://github.com/amineutron/mcp-agent-template/actions/workflows/ci.yml) [![License: AGPL-3.0 + commercial](https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue.svg)](COMMERCIAL-LICENSE.md) [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 
@@ -8,7 +8,7 @@ LLM agent use: every tool call goes through an allowlist policy (`policy.yaml`),
 a caller role (`lecteur` / `operateur` / `admin`, derived from the MCP tool
 annotations), per-parameter allowed values, a human confirmation for destructive
 actions (MCP elicitation, both the 2025-11-25 and 2026-07-28 protocols), and a
-JSONL audit log (mode 0600, one correlation id per call). The `mcp-guard` package
+JSONL audit log (mode 0600, one correlation id per call). The `mcp-agent-template` package
 ships two runnable examples: an enterprise one (tickets, a read-only LDAP-like
 directory, a read-only SQL inventory, all on fictitious local data) and a generic
 ops one (systemd and docker status, restart with confirmation). Local-first,
@@ -52,10 +52,10 @@ Un refus renvoie une erreur lisible a l'agent, jamais un faux succes.
 ## Essayer
 
 ```bash
-uvx mcp-guard --help
-uvx mcp-guard serve --example enterprise   # tickets, annuaire, inventaire (donnees fictives)
-uvx mcp-guard serve --example ops          # systemd et docker
-uvx mcp-guard check-policy policy.yaml     # valide une politique et resume ses regles
+uvx mcp-agent-template --help
+uvx mcp-agent-template serve --example enterprise   # tickets, annuaire, inventaire (donnees fictives)
+uvx mcp-agent-template serve --example ops          # systemd et docker
+uvx mcp-agent-template check-policy policy.yaml     # valide une politique et resume ses regles
 ```
 
 Dans un client MCP (Claude Code, Claude Desktop...) :
@@ -65,8 +65,8 @@ Dans un client MCP (Claude Code, Claude Desktop...) :
   "mcpServers": {
     "entreprise": {
       "command": "uvx",
-      "args": ["mcp-guard", "serve", "--example", "enterprise"],
-      "env": { "MCP_GUARD_ROLE": "operateur" }
+      "args": ["mcp-agent-template", "serve", "--example", "enterprise"],
+      "env": { "MCP_AGENT_TEMPLATE_ROLE": "operateur" }
     }
   }
 }
@@ -74,10 +74,10 @@ Dans un client MCP (Claude Code, Claude Desktop...) :
 
 | Variable | Role | Defaut |
 |---|---|---|
-| `MCP_GUARD_ROLE` | role de l'appelant : `lecteur`, `operateur`, `admin` | `lecteur` |
-| `MCP_GUARD_CONFIRM` | `elicit` : l'humain confirme via le client ; `client` : le client confirme deja lui-meme (il lit `destructiveHint`) | `elicit` |
-| `MCP_GUARD_AUDIT_DIR` | dossier du journal d'audit | `~/.local/state/mcp-guard` |
-| `MCP_GUARD_DATA_DIR` | bases SQLite des exemples | `~/.local/state/mcp-guard-demo` |
+| `MCP_AGENT_TEMPLATE_ROLE` | role de l'appelant : `lecteur`, `operateur`, `admin` | `lecteur` |
+| `MCP_AGENT_TEMPLATE_CONFIRM` | `elicit` : l'humain confirme via le client ; `client` : le client confirme deja lui-meme (il lit `destructiveHint`) | `elicit` |
+| `MCP_AGENT_TEMPLATE_AUDIT_DIR` | dossier du journal d'audit | `~/.local/state/mcp-agent-template` |
+| `MCP_AGENT_TEMPLATE_DATA_DIR` | bases SQLite des exemples | `~/.local/state/mcp-agent-template-demo` |
 
 Le role vient pour l'instant de la configuration du client : chaque poste ou
 chaque profil recoit le sien. La source du role est une petite interface
@@ -105,7 +105,7 @@ aux outils.
 
 ```python
 from mcp.server.mcpserver import MCPServer
-from mcp_guard import Guard, Policy, ToolKind
+from mcp_agent_template import Guard, Policy, ToolKind
 
 server = MCPServer("mon-agent")
 guard = Guard(server, Policy.load("policy.yaml"))
@@ -135,7 +135,7 @@ tools:
 ```
 
 Pour brancher un vrai outil de tickets, un vrai annuaire LDAP ou une vraie base,
-remplacer les classes de `src/mcp_guard/examples/stores.py` : les outils MCP et
+remplacer les classes de `src/mcp_agent_template/examples/stores.py` : les outils MCP et
 la garde ne changent pas.
 
 ## Developpement

@@ -1,4 +1,4 @@
-"""mcp-guard : roles, liste blanche, confirmation humaine et audit pour serveurs MCP."""
+"""mcp-agent-template : roles, liste blanche, confirmation humaine et audit pour serveurs MCP."""
 from importlib.metadata import PackageNotFoundError, version
 
 from .audit import AuditLog, new_correlation_id, redact
@@ -8,7 +8,7 @@ from .policy import Policy, PolicyError, ToolRule
 from .roles import EnvRoleSource, FixedRoleSource, Role, RoleSource, ToolKind, parse_role
 
 try:
-    __version__ = version("mcp-guard")
+    __version__ = version("mcp-agent-template")
 except PackageNotFoundError:  # pragma: no cover - lance depuis les sources sans installation
     __version__ = "0.0.0"
 

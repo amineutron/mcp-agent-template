@@ -2,8 +2,8 @@ import stat
 
 from conftest import read_audit
 
-from mcp_guard import AuditLog, new_correlation_id, redact
-from mcp_guard.audit import default_audit_dir
+from mcp_agent_template import AuditLog, new_correlation_id, redact
+from mcp_agent_template.audit import default_audit_dir
 
 
 def test_fichier_et_dossier_prives(tmp_path):
@@ -45,9 +45,9 @@ def test_secrets_masques_dans_le_journal(tmp_path):
 
 
 def test_dossier_par_defaut():
-    assert str(default_audit_dir({"MCP_GUARD_AUDIT_DIR": "/x/y"})) == "/x/y"
-    assert str(default_audit_dir({"XDG_STATE_HOME": "/s"})) == "/s/mcp-guard"
-    assert default_audit_dir({}).name == "mcp-guard"
+    assert str(default_audit_dir({"MCP_AGENT_TEMPLATE_AUDIT_DIR": "/x/y"})) == "/x/y"
+    assert str(default_audit_dir({"XDG_STATE_HOME": "/s"})) == "/s/mcp-agent-template"
+    assert default_audit_dir({}).name == "mcp-agent-template"
 
 
 def test_identifiants_uniques():

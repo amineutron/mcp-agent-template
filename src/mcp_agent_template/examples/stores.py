@@ -17,7 +17,7 @@ MAX_ROWS = 200
 
 
 def _seed(name: str) -> str:
-    return resources.files("mcp_guard.examples").joinpath("data", name).read_text(encoding="utf-8")
+    return resources.files("mcp_agent_template.examples").joinpath("data", name).read_text(encoding="utf-8")
 
 
 def _create_from_seed(path: Path, seed: str) -> None:

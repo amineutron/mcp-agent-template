@@ -1,4 +1,4 @@
-"""Bout en bout : `mcp-guard serve` lance comme processus, client MCP sur stdio."""
+"""Bout en bout : `mcp-agent-template serve` lance comme processus, client MCP sur stdio."""
 import sys
 
 import pytest
@@ -10,9 +10,9 @@ pytestmark = pytest.mark.anyio
 
 async def test_serveur_entreprise_sur_stdio(tmp_path):
     params = StdioServerParameters(
-        command=sys.executable, args=["-m", "mcp_guard.cli", "serve", "--example", "enterprise"],
-        env={"MCP_GUARD_ROLE": "lecteur", "MCP_GUARD_AUDIT_DIR": str(tmp_path / "audit"),
-             "MCP_GUARD_DATA_DIR": str(tmp_path / "data")})
+        command=sys.executable, args=["-m", "mcp_agent_template.cli", "serve", "--example", "enterprise"],
+        env={"MCP_AGENT_TEMPLATE_ROLE": "lecteur", "MCP_AGENT_TEMPLATE_AUDIT_DIR": str(tmp_path / "audit"),
+             "MCP_AGENT_TEMPLATE_DATA_DIR": str(tmp_path / "data")})
     async with Client(params) as client:
         ok = await client.call_tool("search_directory", {"query": "support"})
         refuse = await client.call_tool("create_ticket", {"title": "x"})

@@ -60,12 +60,12 @@ class RoleSource(Protocol):
 
 @dataclass(frozen=True)
 class EnvRoleSource:
-    """Role fixe dans la configuration du client MCP (variable MCP_GUARD_ROLE).
+    """Role fixe dans la configuration du client MCP (variable MCP_AGENT_TEMPLATE_ROLE).
 
     Absente ou vide : role par defaut, lecteur (le moins de droits possible).
     Invalide : ValueError, pour ne jamais deviner un role."""
 
-    variable: str = "MCP_GUARD_ROLE"
+    variable: str = "MCP_AGENT_TEMPLATE_ROLE"
     default: Role = Role.LECTEUR
     environ: Mapping[str, str] = field(default_factory=lambda: os.environ)
 

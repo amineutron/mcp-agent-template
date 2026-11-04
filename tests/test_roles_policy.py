@@ -1,6 +1,6 @@
 import pytest
 
-from mcp_guard import EnvRoleSource, Policy, PolicyError, Role, ToolKind, parse_role
+from mcp_agent_template import EnvRoleSource, Policy, PolicyError, Role, ToolKind, parse_role
 
 
 @pytest.mark.parametrize("value,role", [
@@ -23,7 +23,9 @@ def test_ordre_des_roles_et_types():
 
 
 @pytest.mark.parametrize("env,expected", [
-    ({}, Role.LECTEUR), ({"MCP_GUARD_ROLE": ""}, Role.LECTEUR), ({"MCP_GUARD_ROLE": "admin"}, Role.ADMIN),
+    ({}, Role.LECTEUR),
+    ({"MCP_AGENT_TEMPLATE_ROLE": ""}, Role.LECTEUR),
+    ({"MCP_AGENT_TEMPLATE_ROLE": "admin"}, Role.ADMIN),
 ])
 def test_role_par_variable_defaut_sur(env, expected):
     assert EnvRoleSource(environ=env).current_role() is expected
@@ -31,7 +33,7 @@ def test_role_par_variable_defaut_sur(env, expected):
 
 def test_role_invalide_ne_devine_rien():
     with pytest.raises(ValueError):
-        EnvRoleSource(environ={"MCP_GUARD_ROLE": "root"}).current_role()
+        EnvRoleSource(environ={"MCP_AGENT_TEMPLATE_ROLE": "root"}).current_role()
 
 
 def test_politique_liste_blanche():
@@ -76,6 +78,6 @@ def test_politique_fichier(tmp_path):
 
 
 def test_politiques_livrees_valides():
-    from mcp_guard.examples import enterprise, ops
+    from mcp_agent_template.examples import enterprise, ops
     for path in (enterprise.POLICY, ops.POLICY):
         assert Policy.load(path).tools
