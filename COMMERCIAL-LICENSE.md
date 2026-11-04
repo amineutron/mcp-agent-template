@@ -1,4 +1,4 @@
-# Licence commerciale — mcp-guard / mcp-agent-template
+# Licence commerciale — mcp-agent-template / mcp-agent-template
 
 > Ce texte decrit l'offre ; le contrat de licence commerciale proprement dit
 > est signe au cas par cas.
@@ -39,4 +39,4 @@ Tarifs : sur demande.
 
 ## Contact
 
-amine.neutroncore@gmail.com — objet : « licence commerciale mcp-guard ».
+amine.neutroncore@gmail.com — objet : « licence commerciale mcp-agent-template ».

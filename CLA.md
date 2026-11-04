@@ -1,4 +1,4 @@
-# Accord de contribution (CLA) — mcp-guard / mcp-agent-template
+# Accord de contribution (CLA) — mcp-agent-template / mcp-agent-template
 
 Ce projet est distribue sous double licence (AGPL-3.0 et licence commerciale,
 voir [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md)). Pour pouvoir continuer a

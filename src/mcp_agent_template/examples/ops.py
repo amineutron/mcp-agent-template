@@ -1,6 +1,6 @@
 """Exemple ops generique : etat systemd et docker en lecture, redemarrage avec confirmation.
 
-    mcp-guard serve --example ops
+    mcp-agent-template serve --example ops
 
 Le redemarrage d'un service systeme demande des droits : preferer une regle sudoers
 limitee a une unite precise, jamais un NOPASSWD sur systemctl entier. La politique
@@ -58,8 +58,8 @@ def parse_docker_ps(output: str) -> list[dict[str, Any]]:
 
 
 def build_server(policy: Policy | None = None, runner: Runner = run_command, **guard_kwargs: Any) -> MCPServer:
-    server = MCPServer("mcp-guard-ops", instructions=(
-        "Serveur d'exemple mcp-guard : etat des services systemd et des conteneurs docker, "
+    server = MCPServer("mcp-agent-template-ops", instructions=(
+        "Serveur d'exemple mcp-agent-template : etat des services systemd et des conteneurs docker, "
         "redemarrage d'un service autorise par la politique apres confirmation humaine."))
     guard = Guard(server, policy or Policy.load(POLICY), **guard_kwargs)
 

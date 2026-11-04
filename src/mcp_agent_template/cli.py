@@ -1,4 +1,4 @@
-"""Ligne de commande : mcp-guard serve | check-policy | --version."""
+"""Ligne de commande : mcp-agent-template serve | check-policy | --version."""
 from __future__ import annotations
 
 import argparse
@@ -13,20 +13,20 @@ from .roles import EnvRoleSource
 EXAMPLES = ("enterprise", "ops")
 
 DESCRIPTION = """\
-mcp-guard : roles, liste blanche, confirmation humaine et journal d'audit pour serveurs MCP.
+mcp-agent-template : roles, liste blanche, confirmation humaine et journal d'audit pour serveurs MCP.
 
 Variables d'environnement :
-  MCP_GUARD_ROLE        role de l'appelant : lecteur (defaut), operateur, admin
-  MCP_GUARD_CONFIRM     elicit (defaut : l'humain confirme via le client) ou client
-  MCP_GUARD_AUDIT_DIR   dossier du journal d'audit JSONL (defaut ~/.local/state/mcp-guard)
-  MCP_GUARD_DATA_DIR    bases SQLite des exemples (defaut ~/.local/state/mcp-guard-demo)
+  MCP_AGENT_TEMPLATE_ROLE        role de l'appelant : lecteur (defaut), operateur, admin
+  MCP_AGENT_TEMPLATE_CONFIRM     elicit (defaut : l'humain confirme via le client) ou client
+  MCP_AGENT_TEMPLATE_AUDIT_DIR   dossier du journal d'audit JSONL (defaut ~/.local/state/mcp-agent-template)
+  MCP_AGENT_TEMPLATE_DATA_DIR    bases SQLite des exemples (defaut ~/.local/state/mcp-agent-template-demo)
 """
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="mcp-guard", description=DESCRIPTION,
+    parser = argparse.ArgumentParser(prog="mcp-agent-template", description=DESCRIPTION,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--version", action="version", version=f"mcp-guard {__version__}")
+    parser.add_argument("--version", action="version", version=f"mcp-agent-template {__version__}")
     sub = parser.add_subparsers(dest="command", metavar="commande")
 
     serve = sub.add_parser("serve", help="lance un serveur d'exemple sur stdio (pour un client MCP)")
@@ -60,7 +60,7 @@ def _serve(example: str, policy_path: str | None) -> int:
         EnvRoleSource().current_role()  # role invalide : on le dit au demarrage, pas au premier appel
         confirm_mode()
     except (PolicyError, ValueError) as e:
-        print(f"mcp-guard : {e}", file=sys.stderr)
+        print(f"mcp-agent-template : {e}", file=sys.stderr)
         return 2
     if example == "enterprise":
         from .examples.enterprise import build_server

@@ -25,12 +25,13 @@ def new_correlation_id() -> str:
 
 
 def default_audit_dir(environ: Mapping[str, str] | None = None) -> Path:
-    """MCP_GUARD_AUDIT_DIR, sinon $XDG_STATE_HOME/mcp-guard, sinon ~/.local/state/mcp-guard."""
+    """MCP_AGENT_TEMPLATE_AUDIT_DIR, sinon $XDG_STATE_HOME/mcp-agent-template, sinon
+    ~/.local/state/mcp-agent-template."""
     env = os.environ if environ is None else environ
-    if env.get("MCP_GUARD_AUDIT_DIR"):
-        return Path(env["MCP_GUARD_AUDIT_DIR"])
+    if env.get("MCP_AGENT_TEMPLATE_AUDIT_DIR"):
+        return Path(env["MCP_AGENT_TEMPLATE_AUDIT_DIR"])
     state = env.get("XDG_STATE_HOME") or str(Path.home() / ".local" / "state")
-    return Path(state) / "mcp-guard"
+    return Path(state) / "mcp-agent-template"
 
 
 def redact(params: Mapping[str, Any]) -> dict[str, Any]:

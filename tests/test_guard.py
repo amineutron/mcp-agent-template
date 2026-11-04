@@ -4,7 +4,7 @@ from conftest import elicitation, read_audit, text_of
 from mcp import Client
 from mcp.server.mcpserver import MCPServer
 
-from mcp_guard import AuditLog, FixedRoleSource, Guard, Policy, Role, ToolKind
+from mcp_agent_template import AuditLog, FixedRoleSource, Guard, Policy, Role, ToolKind
 
 pytestmark = pytest.mark.anyio
 
@@ -59,7 +59,7 @@ async def test_annotations_publiees(tmp_path):
     assert tools["ecrire"].annotations.read_only_hint is False
     assert tools["ecrire"].annotations.destructive_hint is False
     assert tools["detruire"].annotations.destructive_hint is True
-    assert "mcp_guard_ctx" not in str(tools["lire"].input_schema)  # le Context n'est pas un argument
+    assert "mcp_agent_template_ctx" not in str(tools["lire"].input_schema)  # le Context n'est pas un argument
 
 
 @pytest.mark.parametrize("role,tool,args,ok", [

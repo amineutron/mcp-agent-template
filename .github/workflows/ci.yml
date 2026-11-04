@@ -29,6 +29,6 @@ jobs:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - run: uv build
-      # l'executable installe depuis la roue doit repondre, comme le fera `uvx mcp-guard`
-      - run: uvx --from dist/*.whl mcp-guard --help
-      - run: uvx --from dist/*.whl mcp-guard check-policy src/mcp_guard/examples/policies/enterprise.yaml
+      # l'executable installe depuis la roue doit repondre, comme le fera `uvx mcp-agent-template`
+      - run: uvx --from dist/*.whl mcp-agent-template --help
+      - run: uvx --from dist/*.whl mcp-agent-template check-policy src/mcp_agent_template/examples/policies/enterprise.yaml

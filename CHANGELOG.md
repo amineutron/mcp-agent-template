@@ -2,6 +2,15 @@
 
 Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versions [SemVer](https://semver.org/lang/fr/).
 
+## [0.2.0] - 2026-11-04
+
+### Modifie
+
+- Renommage : le paquet, le module Python, la commande et le nom dans le registre MCP passent de
+  `mcp-guard` a `mcp-agent-template` (PyPI refuse `mcp-guard`, trop proche de `mcpguard`). Les
+  variables d'environnement `MCP_GUARD_*` deviennent `MCP_AGENT_TEMPLATE_*`. La version 0.1.0
+  n'a jamais ete publiee sur PyPI.
+
 ## [0.1.0] - 2026-09-27
 
 ### Ajoute

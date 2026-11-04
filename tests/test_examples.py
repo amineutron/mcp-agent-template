@@ -5,10 +5,10 @@ import pytest
 from conftest import elicitation, text_of
 from mcp import Client
 
-from mcp_guard import AuditLog, FixedRoleSource, Role
-from mcp_guard.examples import enterprise, ops
-from mcp_guard.examples.ops import check_unit, parse_docker_ps, parse_show, systemctl_argv
-from mcp_guard.examples.stores import Directory, ReadOnlyDatabase, TicketStore
+from mcp_agent_template import AuditLog, FixedRoleSource, Role
+from mcp_agent_template.examples import enterprise, ops
+from mcp_agent_template.examples.ops import check_unit, parse_docker_ps, parse_show, systemctl_argv
+from mcp_agent_template.examples.stores import Directory, ReadOnlyDatabase, TicketStore
 
 # --- backends (logique pure) -------------------------------------------------
 

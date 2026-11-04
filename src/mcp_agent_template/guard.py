@@ -34,8 +34,8 @@ from .confirm import Confirmation, confirm_mode
 from .policy import Policy
 from .roles import EnvRoleSource, Role, RoleSource, ToolKind
 
-_CTX = "mcp_guard_ctx"
-_ANSWER = "mcp_guard_confirmation"
+_CTX = "mcp_agent_template_ctx"
+_ANSWER = "mcp_agent_template_confirmation"
 
 
 class Denied(Exception):
@@ -178,7 +178,7 @@ class Guard:
                 self.check(tool, kind, params)
                 if not client_can_ask(ctx):
                     raise Denied("le client ne sait pas demander de confirmation a l'humain (elicitation) ; "
-                                 "si le client confirme lui-meme, MCP_GUARD_CONFIRM=client")
+                                 "si le client confirme lui-meme, MCP_AGENT_TEMPLATE_CONFIRM=client")
             except Denied as d:
                 raise self._deny(new_correlation_id(), tool, kind, params, d) from None
             return Elicit(confirmation_message(tool, params), Confirmation)
@@ -190,7 +190,7 @@ class Guard:
         gate.__annotations__ = {**{p.name: p.annotation for p in tool_params
                                    if p.annotation is not inspect.Parameter.empty},
                                 _CTX: Context, "return": Elicit[Confirmation]}
-        gate.__qualname__ = gate.__name__ = f"mcp_guard_gate_{tool}"
+        gate.__qualname__ = gate.__name__ = f"mcp_agent_template_gate_{tool}"
         return gate
 
     def _confirmation(self, cid: str, tool: str, answer: Any) -> None:

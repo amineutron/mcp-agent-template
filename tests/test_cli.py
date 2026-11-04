@@ -1,6 +1,6 @@
 import pytest
 
-from mcp_guard import cli
+from mcp_agent_template import cli
 
 
 def test_aide(capsys):
@@ -8,13 +8,13 @@ def test_aide(capsys):
         cli.main(["--help"])
     assert e.value.code == 0
     out = capsys.readouterr().out
-    assert "MCP_GUARD_ROLE" in out and "serve" in out and "check-policy" in out
+    assert "MCP_AGENT_TEMPLATE_ROLE" in out and "serve" in out and "check-policy" in out
 
 
 def test_version(capsys):
     with pytest.raises(SystemExit):
         cli.main(["--version"])
-    assert capsys.readouterr().out.startswith("mcp-guard ")
+    assert capsys.readouterr().out.startswith("mcp-agent-template ")
 
 
 def test_check_policy(tmp_path, capsys):
@@ -29,6 +29,6 @@ def test_check_policy(tmp_path, capsys):
 
 
 def test_serve_refuse_un_role_invalide_au_demarrage(monkeypatch, capsys):
-    monkeypatch.setenv("MCP_GUARD_ROLE", "root")
+    monkeypatch.setenv("MCP_AGENT_TEMPLATE_ROLE", "root")
     assert cli.main(["serve"]) == 2
     assert "role inconnu" in capsys.readouterr().err
